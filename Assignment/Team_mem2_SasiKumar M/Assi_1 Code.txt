@@ -1,0 +1,55 @@
+int temp =A0;
+int cool =2;
+int p;
+int hot=4;
+int echo=5;
+int trig=3;
+int buzzer=10;
+int distance;
+int time;
+void setup (){
+  pinMode (temp,INPUT);
+  pinMode (2,OUTPUT);
+  pinMode (trig,OUTPUT);
+  pinMode (echo,INPUT);
+  pinMode (buzzer,OUTPUT);
+  Serial.begin (9600);
+}
+void loop (){
+  p= analogRead (temp);
+  p= p*0.488;
+  if(p<50){
+    Serial.print("Temp");
+    Serial.println(p);
+    digitalWrite(4,LOW);
+    digitalWrite (2,HIGH);
+  }
+  else if(p>50){
+    Serial.print("Temp ");
+    Serial.println(p);
+    digitalWrite(2,LOW);
+    digitalWrite (4,HIGH);
+  }
+delay(100);
+  digitalWrite(trig,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig,LOW);
+  time= pulseIn(echo,HIGH);
+  distance= (time*0.034/2);
+  if(distance<=10){
+    Serial.println("Door open");
+    Serial.print("Distance");
+    Serial.println(distance);
+    digitalWrite(buzzer,HIGH);
+      delay(500);
+  }
+  else{
+     Serial.println("Door open");
+    Serial.print("Distance");
+    Serial.println("distance");
+    digitalWrite(buzzer,LOW);
+  }    delay(500);
+}
+    
+    
+  
